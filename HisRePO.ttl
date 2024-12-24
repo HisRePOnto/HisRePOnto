@@ -1,0 +1,146 @@
+@prefix : <http://www.semanticweb.org/junogawa/ontologies/2024/11/untitled-ontology-13/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix cito: <http://purl.org/spar/cito/> .
+@prefix hico: <http://purl.org/emmedi/hico/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@base <http://www.semanticweb.org/junogawa/ontologies/2024/11/untitled-ontology-13/> .
+
+<https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/spar/cito/cites
+cito:cites rdf:type owl:ObjectProperty ;
+           rdfs:domain prov:Activity ;
+           rdfs:range <https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Source> .
+
+
+###  https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl#satisfies
+:satisfies rdf:type owl:ObjectProperty ;
+           rdfs:domain <https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Description> ;
+           rdfs:range <https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Question> .
+
+
+###  https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/source
+<https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/source> rdf:type owl:ObjectProperty ;
+                                                                       rdfs:domain <https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Colligation> ;
+                                                                       rdfs:range <https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Description> ,
+                                                                                  <https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Knowledge> .
+
+
+###  https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/target
+<https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/target> rdf:type owl:ObjectProperty ;
+                                                                       rdfs:domain <https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Colligation> ;
+                                                                       rdfs:range <https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Description> ,
+                                                                                  <https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Knowledge> .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/interpretation
+<https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/interpretation> rdf:type owl:DatatypeProperty ;
+                                                                               rdfs:domain <https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Colligation> ;
+                                                                               rdfs:range rdfs:Literal .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/emmedi/hico/InterpretationAct
+hico:InterpretationAct rdf:type owl:Class ;
+                       rdfs:subClassOf prov:Activity .
+
+
+###  http://www.w3.org/ns/prov#Activity
+prov:Activity rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#Agent
+prov:Agent rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#Collection
+prov:Collection rdf:type owl:Class ;
+                rdfs:subClassOf prov:Entity .
+
+
+###  http://www.w3.org/ns/prov#Entity
+prov:Entity rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#PrimarySource
+prov:PrimarySource rdf:type owl:Class ;
+                   rdfs:subClassOf <https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Source> .
+
+
+###  https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl#SecondarySource
+:SecondarySource rdf:type owl:Class ;
+                 rdfs:subClassOf <https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Source> .
+
+
+###  https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Collecting
+<https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Collecting> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf prov:Activity .
+
+
+###  https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Colligating
+<https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Colligating> rdf:type owl:Class ;
+                                                                            rdfs:subClassOf hico:InterpretationAct .
+
+
+###  https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Colligation
+<https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Colligation> rdf:type owl:Class ;
+                                                                            rdfs:subClassOf prov:Entity .
+
+
+###  https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Description
+<https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Description> rdf:type owl:Class ;
+                                                                            rdfs:subClassOf prov:Entity .
+
+
+###  https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Extracting
+<https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Extracting> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf hico:InterpretationAct .
+
+
+###  https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Knowledge
+<https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Knowledge> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf prov:Entity .
+
+
+###  https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Narrating
+<https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Narrating> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf prov:Activity .
+
+
+###  https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Problematizing
+<https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Problematizing> rdf:type owl:Class ;
+                                                                               rdfs:subClassOf prov:Activity .
+
+
+###  https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Question
+<https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Question> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf prov:Entity .
+
+
+###  https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Source
+<https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/Source> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf prov:Entity .
+
+
+###  https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/SourceEditing
+<https://github.com/junjun7613/HisRePOnt/blob/main/HisRePO.ttl/SourceEditing> rdf:type owl:Class ;
+                                                                              rdfs:subClassOf hico:InterpretationAct .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
