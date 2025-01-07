@@ -80,13 +80,13 @@ cito:cites rdf:type owl:ObjectProperty ;
                                rdfs:range xsd:language .
 
 
-###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#appliedAlgorithm
+###  http://www.semanticweb.org/junogawa/ontologies/2024/11/untitled-ontology-13/appliedAlgorithm
 :appliedAlgorithm rdf:type owl:DatatypeProperty ;
                   rdfs:domain hico:InterpretationAct ,
                               <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Collecting> .
 
 
-###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#appliedMethod
+###  http://www.semanticweb.org/junogawa/ontologies/2024/11/untitled-ontology-13/appliedMethod
 :appliedMethod rdf:type owl:DatatypeProperty ;
                rdfs:domain hico:InterpretationAct ,
                            <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Collecting> .
@@ -132,6 +132,25 @@ prov:Entity rdf:type owl:Class .
 ###  http://www.w3.org/ns/prov#PrimarySource
 prov:PrimarySource rdf:type owl:Class ;
                    rdfs:subClassOf <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Source> .
+
+
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#AsAResult
+:AsAResult rdf:type owl:Class ;
+           rdfs:subClassOf :ColligationType .
+
+
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#ColligationType
+:ColligationType rdf:type owl:Class .
+
+
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#Enables
+:Enables rdf:type owl:Class ;
+         rdfs:subClassOf :ColligationType .
+
+
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#Specific
+:Specific rdf:type owl:Class ;
+          rdfs:subClassOf :ColligationType .
 
 
 ###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Collecting
