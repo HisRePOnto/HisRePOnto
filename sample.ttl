@@ -1,0 +1,200 @@
+@prefix : <http://www.example.com/entity#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix hisrepo: <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix schema: <http://schema.org/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+:p0001 a prov:Person;
+    schema:name "Jun Ogawa"^^xsd:string ;
+    schema:affiliation "University of Tokyo"^^xsd:string .
+
+:pr0001 a hisrepo:Problematizing ;
+    prov:wasAssociatedWith :p0001 ;
+    prov:startedAtTime "2019-04"^^xsd:dateTime ;
+    prov:endedAtTime "2019-05"^^xsd:dateTime ;
+    prov:used :s0002 .
+
+:q0001 a hisrepo:Question ;
+    schema:description "ローマ帝国はきわめて小さな官僚機構をもっていかに広大な帝国を統治したのか？"^^xsd:string ;
+    prov:wasGeneratedBy :pr0001 .
+
+:pr0002 a hisrepo:Problematizing ;
+    prov:wasAssociatedWith :p0001 ;
+    prov:used :s0001 ;
+    prov:wasInfluencedBy :q0001 .
+
+:q0002 a hisrepo:Question ;
+    schema:description "都市領域内に存在した小規模共同体は、有力者との間にどのように庇護関係を構築し、共同体を運営したのか？"^^xsd:string ;
+    prov:wasGeneratedBy :pr0002 .
+
+:col0001 a hisrepo:Collecting ;
+    schema:description "東京大学綜合図書館での資料調査（2024年5月）"^^xsd:string ;
+    prov:wasAssociatedWith :p0001 ;
+    prov:used :q0002 ;
+    prov:startedAtTime "2019-07"^^xsd:dateTime ;
+    prov:endedAtTime "2019-12"^^xsd:dateTime ;
+    prov:atLocation <https://www.lib.u-tokyo.ac.jp/ja/library/general> .
+
+:col0002 a hisrepo:Collecting ;
+    schema:description "ハイデルベルク碑文データベースを用いた史料収集"^^xsd:string ;
+    prov:wasAssociatedWith :p0001 ;
+    prov:used :q0002 ;
+    prov:startedAtTime "2020-01"^^xsd:dateTime ;
+    prov:endedAtTime "2020-06"^^xsd:dateTime ;
+    prov:atLocation <https://edh.ub.uni-heidelberg.de/> .
+
+:c0002 a prov:Collection ;
+    prov:wasGeneratedBy :col0002 ;
+    prov:hadMember :s0003, :s0004 .
+
+:s0003 a hisrepo:PrimarySource ;
+    schema:type "Inscription"^^xsd:string ;
+    rdfs:label "CIL 12, 594"^^xsd:string ;
+    dc:source <https://edh.ub.uni-heidelberg.de/edh/inschrift/HD047633/xml> .
+
+:s0004 a hisrepo:PrimarySource ;
+    schema:type "Inscription"^^xsd:string ;
+    rdfs:label "CIL 12, 1783"^^xsd:string .
+
+:se0001 a hisrepo:SourceEditing ;
+    prov:wasAssociatedWith :p0001 ;
+    prov:used :s0004 ;
+    schema:description "Encoding the text with TEI/XML"^^xsd:string .
+
+:s0005 a schema:Dataset ;
+    prov:wasGeneratedBy :se0001 ;
+    dc:source <https://edh.ub.uni-heidelberg.de/edh/inschrift/HD047634> .
+
+:e0001 a hisrepo:Extracting ;
+    schema:description "CIL 12, 594. Pagus Lucretusに関する碑文の分析"^^xsd:string ;
+    prov:wasAssociatedWith :p0001 ;
+    prov:used :s0003 .
+
+:e0002 a hisrepo:Extracting ;
+    schema:description "CIL 12, 1783. タン・エルミタージュ出土碑文の分析"^^xsd:string ;
+    prov:wasAssociatedWith :p0001 ;
+    prov:used :s0004 .
+
+:hk0001 a hisrepo:HistoricalKnowledge ;
+    prov:wasGeneratedBy :e0001 ;
+    prov:wasDerivedFrom :s0003 ;
+    schema:description "Pagus Lucretusは植民市アレラテ(現アルル)の領域内、Gargarius地所に存在した"^^xsd:string .
+
+:hk0002 a hisrepo:HistoricalKnowledge ;
+    prov:wasGeneratedBy :e0001 ;
+    prov:wasDerivedFrom :s0003 ;
+    schema:description "Quintus Cornelius ZosimusはMarcellusの解放奴隷であった"^^xsd:string .
+
+:hk0003 a hisrepo:HistoricalKnowledge ;
+    prov:wasGeneratedBy :e0001 ;
+    prov:wasDerivedFrom :s0003 ;
+    schema:description "ZosimusはPagus Lucretusの住人のための皇帝アントニヌス・ピウスとの交渉を行った"^^xsd:string .
+
+:hk0004 a hisrepo:HistoricalKnowledge ;
+    prov:wasGeneratedBy :e0001 ;
+    prov:wasDerivedFrom :s0003 ;
+    schema:description "Pagus Lucretusの住人はZosimusに対する顕彰碑文を設置した"^^xsd:string .
+
+:hk0005 a hisrepo:HistoricalKnowledge ;
+    prov:wasGeneratedBy :e0002 ;
+    prov:wasDerivedFrom :s0004 ;
+    schema:description "Macedoは植民市ウィエンナ(現ヴィエンヌ)において高位公職を務めた"^^xsd:string .
+
+:hk0006 a hisrepo:HistoricalKnowledge ;
+    prov:wasGeneratedBy :e0002 ;
+    prov:wasDerivedFrom :s0004 ;
+    schema:description "Macedoは皇帝ハドリアヌスによって元老院議員に推挙された"^^xsd:string .
+
+:hk0007 a hisrepo:HistoricalKnowledge ;
+    prov:wasGeneratedBy :e0002 ;
+    prov:wasDerivedFrom :s0004 ;
+    schema:description "Macedoはvicusのパトロヌスであった"^^xsd:string .
+
+:collig0001 a hisrepo:Colligating ;
+    prov:wasAssociatedWith :p0001 ;
+    prov:used :hk0002, :hk0003, :hk0004 .
+
+:colligation0001 a hisrepo:Colligation ;
+    schema:additionalType hisrepo:Enables ;
+    hisrepo:source :hk0002 ;
+    hisrepo:target :hk0003 ;
+    prov:wasGeneratedBy :collig0001 ;
+    hisrepo:interpretation "Zosimusは解放主であるMarcellusとのパトロネジをはじめとした豊富な人的紐帯を有していた"^^xsd:string .
+
+:colligation0002 a hisrepo:Colligation ;
+    schema:additionalType hisrepo:AsAResult ;
+    hisrepo:source :hk0003 ;
+    hisrepo:target :hk0004 ;
+    prov:wasGeneratedBy :collig0001 .
+
+:hd0001 a hisrepo:HistoricalDescription ;
+    prov:wasGeneratedBy :collig0001 ;
+    schema:description "pagusにおいては、解放奴隷が解放主をはじめとする人的紐帯を利用しつつ共同体の利益のために活動することがあり、それに対してpagus側も、庇護者のように彼を讃えていた"^^xsd:string .
+
+:collig0002 a hisrepo:Colligating ;
+    prov:wasAssociatedWith :p0001 ;
+    prov:used :hk0005, :hk0006, :hk0007 .
+
+:colligation0003 a hisrepo:Colligation ;
+    schema:additionalType hisrepo:Hence ;
+    hisrepo:source :hk0005 ;
+    hisrepo:target :hk0006 ;
+    prov:wasGeneratedBy :collig0002 ;
+    hisrepo:interpretation "都市の高位公職を務めていなかった場合、皇帝の知遇を得たとは考えにくい"^^xsd:string .
+
+:colligation0004 a hisrepo:Colligation ;
+    schema:additionalType hisrepo:Hence ;
+    hisrepo:source :hk0006 ;
+    hisrepo:target :hk0007 ;
+    prov:wasGeneratedBy :collig0002 .
+
+:hd0002 a hisrepo:HistoricalDescription ;
+    prov:wasGeneratedBy :collig0002 ;
+    schema:description "vicusは、Macedoが都市で高位公職を務め、皇帝の推挙も受けるほどの社会的名望をえている人物であったがゆえに、彼とのつながりを求めたと思われる"^^xsd:string .
+
+:collig0003 a hisrepo:Colligating ;
+    prov:wasAssociatedWith :p0001 ;
+    prov:used :hd0001, :hd0002 .
+
+:hd0003 a hisrepo:HistoricalDescription ;
+    prov:wasGeneratedBy :collig0003 ;
+    schema:description "pagusやvicusは、その社会的地位によらず、共同体にとっての利益をもたらすさまざまな人物との間に関係を築き、自らの利益を図ろうと戦略的に振る舞っていた"^^xsd:string ;
+    hisrepo:satisfies :q0002 .
+
+:colligation0005 a hisrepo:Colligation ;
+    schema:additionalType hisrepo:Specific ;
+    hisrepo:source :hd0001 ;
+    hisrepo:target :hd0003 ;
+    prov:wasGeneratedBy :collig0003 .
+
+:colligation0006 a hisrepo:Colligation ;
+    schema:additionalType hisrepo:Specific ;
+    hisrepo:source :hd0002 ;
+    hisrepo:target :hd0003 ;
+    prov:wasGeneratedBy :collig0003 .
+
+:collig0004 a hisrepo:Colligating ;
+    prov:wasAssociatedWith :p0001 ;
+    prov:used :hd0003 .
+
+:colligation0007 a hisrepo:Colligation ;
+    schema:additionalType hisrepo:Hence ;
+    hisrepo:source :hd0003 ;
+    hisrepo:target :hd0004 ;
+    prov:wasGeneratedBy :collig0004 .
+
+:hd0004 a hisrepo:HistoricalDescription ;
+    prov:wasGeneratedBy :collig0004 ;
+    schema:description "ローマ帝国の統治は、都市よりもさらに小規模な共同体までもが、ある程度、自律的に機能していたがゆえに成立していた"^^xsd:string ;
+    hisrepo:satisfies :q0001 .
+
+:narrat0001 a hisrepo:Narrating ;
+    schema:inLanguage "ja"^^xsd:language ;
+    hisrepo:hasNarratFormat schema:ScholarlyArticle ;
+    prov:wasAssociatedWith :p0001 ;
+    prov:used :hd0004 ;
+    prov:generated <https://cir.nii.ac.jp/crid/1010857593588688256> .

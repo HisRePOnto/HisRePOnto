@@ -1,4 +1,4 @@
-@prefix : <http://www.semanticweb.org/junogawa/ontologies/2024/11/untitled-ontology-13/> .
+@prefix : <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -8,7 +8,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
-@base <http://www.semanticweb.org/junogawa/ontologies/2024/11/untitled-ontology-13/> .
+@base <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#> .
 
 <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl> rdf:type owl:Ontology .
 
@@ -17,85 +17,71 @@
 #################################################################
 
 ###  http://purl.org/spar/cito/cites
-cito:cites rdf:type owl:ObjectProperty ;
-           rdfs:domain prov:Activity ;
-           rdfs:range prov:Entity .
+cito:cites rdf:type owl:ObjectProperty .
 
 
-###  http://schema.org/additionalType
-<http://schema.org/additionalType> rdf:type owl:ObjectProperty ;
-                                   rdfs:domain prov:Entity .
+###  http://schema.org/citation
+<http://schema.org/citation> rdf:type owl:ObjectProperty .
 
 
-###  http://schema.org/audience
-<http://schema.org/audience> rdf:type owl:ObjectProperty ;
-                             rdfs:domain <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Narrating> .
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#citing
+:citing rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf cito:cites ;
+        rdfs:domain prov:Activity ;
+        rdfs:range :Source ;
+        rdfs:comment "This represents the sources cited in the process of certain research 'Activity.' The difference from cito:cites is that this property is not attached to the Entity (ex. schema:CreativeWork, prov:Enitty) but to  to the Activity." .
 
 
-###  http://schema.org/instrument
-<http://schema.org/instrument> rdf:type owl:ObjectProperty ;
-                               rdfs:domain hico:InterpretationAct ,
-                                           <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Collecting> ,
-                                           <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Narrating> .
-
-
-###  http://www.semanticweb.org/junogawa/ontologies/2024/11/untitled-ontology-13/hasNarratFormat
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#hasNarratFormat
 :hasNarratFormat rdf:type owl:ObjectProperty ;
-                 rdfs:domain <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Narrating> .
+                 rdfs:domain :Narrating ;
+                 rdfs:comment "hasNarratFormat pecifies the medium of historical narrative. For example, schema:ScholarlyArticle, schema:Book, etc." .
 
 
-###  http://www.semanticweb.org/junogawa/ontologies/2024/11/untitled-ontology-13/satisfies
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#satisfies
 :satisfies rdf:type owl:ObjectProperty ;
-           rdfs:domain <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Description> ;
-           rdfs:range <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Question> .
+           rdfs:domain :HistoricalDescription ;
+           rdfs:range :Question ;
+           rdfs:comment "Relates a 'HistoricalDescription' to a 'Question' if the former responds to the latter posed in the ‘Problematization’ process." .
 
 
-###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/source
-<https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/source> rdf:type owl:ObjectProperty ;
-                                                                        rdfs:domain <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Colligation> ;
-                                                                        rdfs:range <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Description> ,
-                                                                                   <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Knowledge> .
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#source
+:source rdf:type owl:ObjectProperty ;
+        rdfs:domain :Colligation ;
+        rdfs:range :HistoricalDescription ,
+                   :HistoricalKnowledge ;
+        rdfs:comment "This specifies a 'HistoricalKnowledge' or 'HistoricalDescription' instance refered to in the 'Colligating' process." .
 
 
-###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/target
-<https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/target> rdf:type owl:ObjectProperty ;
-                                                                        rdfs:domain <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Colligation> ;
-                                                                        rdfs:range <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Description> ,
-                                                                                   <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Knowledge> .
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#target
+:target rdf:type owl:ObjectProperty ;
+        rdfs:domain :Colligation ;
+        rdfs:range :HistoricalDescription ,
+                   :HistoricalKnowledge ;
+        rdfs:comment "This specifies a 'HistoricalKnowledge' or 'HistoricalDescription' instance refered to in the 'Colligating' process." .
 
 
 #################################################################
 #    Data properties
 #################################################################
 
-###  http://schema.org/description
-<http://schema.org/description> rdf:type owl:DatatypeProperty ;
-                                rdfs:domain owl:Thing ;
-                                rdfs:range xsd:string .
-
-
-###  http://schema.org/inLanguage
-<http://schema.org/inLanguage> rdf:type owl:DatatypeProperty ;
-                               rdfs:domain <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Narrating> ;
-                               rdfs:range xsd:language .
-
-
-###  http://www.semanticweb.org/junogawa/ontologies/2024/11/untitled-ontology-13/appliedAlgorithm
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#appliedAlgorithm
 :appliedAlgorithm rdf:type owl:DatatypeProperty ;
-                  rdfs:domain hico:InterpretationAct ,
-                              <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Collecting> .
+                  rdfs:domain :Collecting ;
+                  rdfs:comment "This specifies a specific algorithm used in the research process." .
 
 
-###  http://www.semanticweb.org/junogawa/ontologies/2024/11/untitled-ontology-13/appliedMethod
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#appliedMethod
 :appliedMethod rdf:type owl:DatatypeProperty ;
-               rdfs:domain hico:InterpretationAct ,
-                           <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Collecting> .
+               rdfs:domain :Collecting ;
+               rdfs:comment "This specifies a specific method used in the research process either historiographical or technical." .
 
 
-###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/interpretation
-<https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/interpretation> rdf:type owl:DatatypeProperty ;
-                                                                                rdfs:domain <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Colligation> ;
-                                                                                rdfs:range xsd:string .
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#interpretation
+:interpretation rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Colligation ;
+                rdfs:range xsd:string ;
+                rdfs:comment "This represents sholar's interpretation given in the 'Colligating' process." .
 
 
 #################################################################
@@ -103,13 +89,7 @@ cito:cites rdf:type owl:ObjectProperty ;
 #################################################################
 
 ###  http://purl.org/emmedi/hico/InterpretationAct
-hico:InterpretationAct rdf:type owl:Class ;
-                       rdfs:subClassOf prov:Activity .
-
-
-###  http://www.semanticweb.org/junogawa/ontologies/2024/11/untitled-ontology-13/SecondarySource
-:SecondarySource rdf:type owl:Class ;
-                 rdfs:subClassOf <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Source> .
+hico:InterpretationAct rdf:type owl:Class .
 
 
 ###  http://www.w3.org/ns/prov#Activity
@@ -129,83 +109,127 @@ prov:Collection rdf:type owl:Class ;
 prov:Entity rdf:type owl:Class .
 
 
-###  http://www.w3.org/ns/prov#PrimarySource
-prov:PrimarySource rdf:type owl:Class ;
-                   rdfs:subClassOf <https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Source> .
+###  http://www.w3.org/ns/prov#Organization
+prov:Organization rdf:type owl:Class ;
+                  rdfs:subClassOf prov:Agent .
+
+
+###  http://www.w3.org/ns/prov#Person
+prov:Person rdf:type owl:Class ;
+            rdfs:subClassOf prov:Agent .
+
+
+###  http://www.w3.org/ns/prov#SoftwareAgent
+prov:SoftwareAgent rdf:type owl:Class ;
+                   rdfs:subClassOf prov:Agent .
 
 
 ###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#AsAResult
 :AsAResult rdf:type owl:Class ;
-           rdfs:subClassOf :ColligationType .
+           rdfs:subClassOf :ColligationType ;
+           rdfs:comment "This represents a cause-and-effect relationship between one fact and another that occurred as a result of that fact. The causal fact is described by the source property and the resulting fact by the target." .
+
+
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#Collecting
+:Collecting rdf:type owl:Class ;
+            rdfs:subClassOf prov:Activity ;
+            rdfs:comment "Collecting represents the act of ‘collecting’ material and its contexts in the process of historical research." .
+
+
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#Colligating
+:Colligating rdf:type owl:Class ;
+             rdfs:subClassOf :Interpreting ;
+             rdfs:comment "This class represents the interpretive act in historical research, which is the ‘synthesis’ of knowledge extracted from sources. For example, it represents the process of finding causal relationships between several facts and creating new historical knowledge." .
+
+
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#Colligation
+:Colligation rdf:type owl:Class ;
+             rdfs:subClassOf prov:Entity ;
+             rdfs:comment "This class represents the logical and causal relationships generated by the actions represented by the 'Colligating' class as an entity, with 'schema:additionalType' describing the specific type of relationship." .
 
 
 ###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#ColligationType
-:ColligationType rdf:type owl:Class .
+:ColligationType rdf:type owl:Class ;
+                 rdfs:comment "Colligation type specifies the type of logical relations between historical knowledge or historical narratives that are generated in the process of Colligating. Instances of this class will be added to 'Colligation' instance by 'schema:additionalType'." .
 
 
 ###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#Enables
 :Enables rdf:type owl:Class ;
-         rdfs:subClassOf :ColligationType .
+         rdfs:subClassOf :ColligationType ;
+         rdfs:comment "This represents a relationship in which one fact makes another fact possible. The former is described by the source property and the latter by the target property." .
+
+
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#Extracting
+:Extracting rdf:type owl:Class ;
+            rdfs:subClassOf :Interpreting ;
+            rdfs:comment "This class represents the interpretive act in historical research, which is the extraction of specific knowledge from sources. Examples include annotations on place names, people and events." .
+
+
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#HistoricalDescription
+:HistoricalDescription rdf:type owl:Class ;
+                       rdfs:subClassOf prov:Entity ;
+                       rdfs:comment "This class represents ‘historical description’ generated by synthesising and abstracting ‘historical knowledge’ through logical and causal relationships." .
+
+
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#HistoricalKnowledge
+:HistoricalKnowledge rdf:type owl:Class ;
+                     rdfs:subClassOf prov:Entity ;
+                     rdfs:comment "This class represents ‘historical knowledge’ extracted directly from sources. Specifically, it is assumed to include events described in the material." .
+
+
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#Interpreting
+:Interpreting rdf:type owl:Class ;
+              rdfs:subClassOf hico:InterpretationAct ,
+                              prov:Activity ;
+              rdfs:comment "Interpreting means the interpretation act in the process of historical research. Specifically, it includes the processes of revising and editing sources, extracting knowledge and synthesising knowledge." .
+
+
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#Narrating
+:Narrating rdf:type owl:Class ;
+           rdfs:subClassOf prov:Activity ;
+           rdfs:comment "This class represents the act of ‘narrating’ in the process of historical research and can be assigned information such as narrative form and narrative medium." .
+
+
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#PrimarySource
+:PrimarySource rdf:type owl:Class ;
+               rdfs:subClassOf :Source ;
+               rdfs:comment "Material containing original information or direct source material." .
+
+
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#Problematizing
+:Problematizing rdf:type owl:Class ;
+                rdfs:subClassOf prov:Activity ;
+                rdfs:comment "This class represents the act of ‘problematizing’ in the process of historical research and describes the sources and other information referred to in the process." .
+
+
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#Question
+:Question rdf:type owl:Class ;
+          rdfs:subClassOf prov:Entity ;
+          rdfs:comment "This class represents the ‘question’ set by the ‘problematizing’ act as an entity." .
+
+
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#SecondarySource
+:SecondarySource rdf:type owl:Class ;
+                 rdfs:subClassOf :Source ;
+                 rdfs:comment "Material compiled from primary sources or used to locate primary sources. Academic papers are included in this category." .
+
+
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#Source
+:Source rdf:type owl:Class ;
+        rdfs:subClassOf prov:Entity ;
+        rdfs:comment "Source here includes both primary and secondary as sub classes." .
+
+
+###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#SourceEditing
+:SourceEditing rdf:type owl:Class ;
+               rdfs:subClassOf :Interpreting ;
+               rdfs:comment "This class represents the act of interpretation in historical research, particularly in the revision and editing of sources." .
 
 
 ###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl#Specific
 :Specific rdf:type owl:Class ;
-          rdfs:subClassOf :ColligationType .
-
-
-###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Collecting
-<https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Collecting> rdf:type owl:Class ;
-                                                                            rdfs:subClassOf prov:Activity .
-
-
-###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Colligating
-<https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Colligating> rdf:type owl:Class ;
-                                                                             rdfs:subClassOf hico:InterpretationAct .
-
-
-###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Colligation
-<https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Colligation> rdf:type owl:Class ;
-                                                                             rdfs:subClassOf prov:Entity .
-
-
-###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Description
-<https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Description> rdf:type owl:Class ;
-                                                                             rdfs:subClassOf prov:Entity .
-
-
-###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Extracting
-<https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Extracting> rdf:type owl:Class ;
-                                                                            rdfs:subClassOf hico:InterpretationAct .
-
-
-###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Knowledge
-<https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Knowledge> rdf:type owl:Class ;
-                                                                           rdfs:subClassOf prov:Entity .
-
-
-###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Narrating
-<https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Narrating> rdf:type owl:Class ;
-                                                                           rdfs:subClassOf prov:Activity .
-
-
-###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Problematizing
-<https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Problematizing> rdf:type owl:Class ;
-                                                                                rdfs:subClassOf prov:Activity .
-
-
-###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Question
-<https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Question> rdf:type owl:Class ;
-                                                                          rdfs:subClassOf prov:Entity .
-
-
-###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Source
-<https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/Source> rdf:type owl:Class ;
-                                                                        rdfs:subClassOf prov:Entity .
-
-
-###  https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/SourceEditing
-<https://github.com/HisRePOnto/HisRePOnto/blob/main/HisRePO.ttl/SourceEditing> rdf:type owl:Class ;
-                                                                               rdfs:subClassOf hico:InterpretationAct .
+          rdfs:subClassOf :ColligationType ;
+          rdfs:comment "This indicates a relationship whereby other facts exist as concrete examples of a certain matter. The concrete example is described by source and the abstract matter by target." .
 
 
 ###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
